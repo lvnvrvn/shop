@@ -1,7 +1,7 @@
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 
-function PlusMinusBtnGroup({ addedItemsCount, decreaseNumber, increaseNumber, isPlusBtnDisabled = false, isMinusBtnDisabled = false }) {
+function PlusMinusBtnGroup({ addedItemsCount, decreaseNumber, increaseNumber, isPlusBtnDisabled, isMinusBtnDisabled }) {
   return (
     <ButtonGroup
       sx={{

@@ -23,14 +23,12 @@ function Cart() {
     return acc + itemPrice * mappedObject[cur];
   }, 0);
 
-  // {console.log('cart', Object.entries(cart))}
   const flatStore = Object.entries(cart).map(item => [item[0], Object.entries(item[1])]);
 
   return (
     <div className="Cart">
       <Header />
       <h2>Корзина</h2>
-      {/* <Typography sx={{ marginBottom: "20px" }}>Количество товаров: {goodCount}</Typography> */}
       <div className="cart__box">
         <Button
           sx={{ textTransform: "none" }}
@@ -44,7 +42,6 @@ function Cart() {
         >
           Очистить корзину
         </Button>
-        {/* {Object.entries(cart).map(item => <AddedGood id={1} size={item} />)} */}
         {flatStore.map(([id, sizes]) => sizes.map(([size, count]) => <AddedGood id={id} size={size} count={count} />))}
         <Typography sx={{ marginBottom: "50px" }}>{totalPrice} $</Typography>
         <Button variant="contained">Оформить заказ</Button>

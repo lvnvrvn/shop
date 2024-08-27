@@ -14,47 +14,22 @@ import {
 } from "../actions/cartActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PlusMinusBtnGroup from "./PlusMinusBtnGroup";
+import DeleteFromCartDialog from "./DeleteFromCartDialog";
 
-function AddedGood({ id, size, count }) {
-  // const addedGood = useSelector((state) => state.cart[id]?.[chosenSize]);
-  console.log("AddedGood id", id);
-
+function AddedGood({ id, size }) {
   const addedItemsCount = useSelector((state) => state.cart[id]?.[size]);
   const dispatch = useDispatch();
   const [isPlusBtnDisabled, setIsPlusBtnDisabled] = useState(false);
-  const [isMinusBtnDisable, setIsMinusBtnDisable] = useState(false);
+  const [isMinusBtnDisabled, setIsMinusBtnDisabled] = useState(
+    addedItemsCount === 1
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { inStockSizes } = goods[id];
 
   useEffect(() => {
-    if (inStockSizes[size] === addedItemsCount) {
-      setIsPlusBtnDisabled(true);
-    } else if (addedItemsCount === 1) {
-      setIsMinusBtnDisable(true);
-    } else {
-      setIsPlusBtnDisabled(false);
-    }
+    setIsPlusBtnDisabled(inStockSizes[size] === addedItemsCount);
+    setIsMinusBtnDisabled(addedItemsCount === 1);
   }, [addedItemsCount]);
-
-  // function addToCart() {
-  //   dispatch({
-  //     type: ADD_TO_CART,
-  //     payload: { id, size: size },
-  //   });
-  // }
-
-  // function removeFromCart() {
-  //   dispatch({
-  //     type: REMOVE_FROM_CART,
-  //     payload: { id, size: size },
-  //   });
-  // }
-
-  // function deleteFromCart() {
-  //   dispatch({
-  //     type: DELETE_FROM_CART,
-  //     payload: { id, size: size },
-  //   });
-  // }
 
   if (!goods[+id]) {
     return `Товар с id ${id} невозможно отобразить, обратитесь в поддержку`;
@@ -64,7 +39,6 @@ function AddedGood({ id, size, count }) {
     <Card
       sx={{
         display: "flex",
-        // flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
         width: "30%",
@@ -76,7 +50,6 @@ function AddedGood({ id, size, count }) {
         component="img"
         sx={{ height: "100px", width: "100px", marginRight: "25%" }}
         image={goods[+id].imgUrl}
-        // image="https://a.lmcdn.ru/product/R/T/RTLADD897501_22025670_1_v2.jpg"
         alt="Good"
       />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -101,24 +74,15 @@ function AddedGood({ id, size, count }) {
             decreaseNumber={() => dispatch(removeFromCart({ id, size }))}
             increaseNumber={() => dispatch(addToCart({ id, size }))}
             isPlusBtnDisabled={isPlusBtnDisabled}
-            isMinusBtnDisable={isMinusBtnDisable}
+            isMinusBtnDisabled={isMinusBtnDisabled}
           />
-          {/* <DeleteIcon onClick={deleteFromCart} sx={{ cursor: 'pointer'}} /> */}
           <DeleteIcon
-            onClick={() => dispatch(deleteFromCart({ id, size }))}
+            onClick={() => setIsModalOpen(true)}
             sx={{ cursor: "pointer" }}
           />
+          <DeleteFromCartDialog open={isModalOpen} handleClose={() => setIsModalOpen(false)} handleDelete={() => dispatch(deleteFromCart({ id, size }))} />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-          {/* <IconButton aria-label="previous">
-            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-          </IconButton>
-          <IconButton aria-label="play/pause">
-            <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-          </IconButton>
-          <IconButton aria-label="next">
-            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-          </IconButton> */}
           <Button />
         </Box>
       </Box>

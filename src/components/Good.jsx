@@ -30,20 +30,6 @@ export default function Good({ good }) {
     }
   }, [addedItemsCount]);
 
-  // function addToCart() {
-  //   dispatch({
-  //     type: ADD_TO_CART,
-  //     payload: { id, size: chosenSize },
-  //   })
-  // }
-
-  // function removeFromCart() {
-  //   dispatch({
-  //     type: REMOVE_FROM_CART,
-  //     payload: { id, size: chosenSize },
-  //   })
-  // }
-
   return (
     <Card
       sx={{
@@ -86,33 +72,9 @@ export default function Good({ good }) {
                 </li>
               </Badge>
             ))}
-            {/* <Badge badgeContent={4} color="primary">
-              <li>xs</li>
-            </Badge>
-            <Badge badgeContent={0} color="primary">
-              <li>s</li>
-            </Badge>
-            <Badge badgeContent={0} color="primary">
-              <li>m</li>
-            </Badge>
-            <Badge badgeContent={0} color="primary">
-              <li>l</li>
-            </Badge>
-            <Badge badgeContent={1} color="primary">
-              <li>xl</li>
-            </Badge> */}
           </ul>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-          {/* <IconButton aria-label="previous">
-            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-          </IconButton>
-          <IconButton aria-label="play/pause">
-            <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-          </IconButton>
-          <IconButton aria-label="next">
-            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-          </IconButton> */}
           {addedItemsCount ? (
             <PlusMinusBtnGroup
               addedItemsCount={addedItemsCount}
