@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from '@redux-devtools/extension';
 import rootReducer from "./reducers";
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
