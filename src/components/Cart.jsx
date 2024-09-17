@@ -42,7 +42,7 @@ function Cart() {
         >
           Очистить корзину
         </Button>
-        {flatStore.map(([id, sizes]) => sizes.map(([size, count]) => <AddedGood id={id} size={size} count={count} />))}
+        {flatStore.map(([id, sizes]) => sizes.map(([size, count]) => <AddedGood key={`${id}_${size}`} id={id} size={size} count={count} />))}
         <Typography sx={{ marginBottom: "50px" }}>{totalPrice} $</Typography>
         <Button variant="contained">Оформить заказ</Button>
       </div>
