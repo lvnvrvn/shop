@@ -29,7 +29,7 @@ function AddedGood({ id, size }) {
   useEffect(() => {
     setIsPlusBtnDisabled(inStockSizes[size] === addedItemsCount);
     setIsMinusBtnDisabled(addedItemsCount === 1);
-  }, [addedItemsCount]);
+  }, [addedItemsCount, inStockSizes, size]);
 
   if (!goods[+id]) {
     return `Товар с id ${id} невозможно отобразить, обратитесь в поддержку`;

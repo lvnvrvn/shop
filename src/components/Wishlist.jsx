@@ -1,6 +1,5 @@
 import Header from "./Header";
 import AddedGood from "./AddedGood";
-import Button from "@mui/material/Button";
 
 function Wishlist() {
   return (
