@@ -10,13 +10,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import PlusMinusBtnGroup from "./PlusMinusBtnGroup";
+import { RootState } from "../reducers";
 
 export default function Good({ good }) {
   const { id, title, price, inStockSizes, imgUrl } = good;
   const sizes = Object.keys(inStockSizes);
   const [chosenSize, setChosenSize] = useState(sizes[0]);
   const [isPlusBtnDisabled, setIsPlusBtnDisabled] = useState(false);
-  const addedItemsCount = useSelector((state) => state.cart[id]?.[chosenSize]);
+  const addedItemsCount = useSelector((state: RootState) => state.cart[id]?.[chosenSize]);
 
   const dispatch = useDispatch();
 
