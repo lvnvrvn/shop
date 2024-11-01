@@ -1,4 +1,11 @@
-import * as actions from '../actions/cartActions';
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  DELETE_FROM_CART,
+  CLEAR_CART,
+  ICartActionWithPayload,
+  ICartAction
+} from '../actions/cartActions';
 
 interface IInitialState {
   [itemId: number]: {
@@ -7,9 +14,12 @@ interface IInitialState {
 }
 export const initialState: IInitialState = {};
 
-export default function cartReducer(state = initialState, action) {
+export default function cartReducer(
+  state = initialState,
+  action: ICartActionWithPayload | ICartAction,
+) {
   switch (action.type) {
-    case actions.ADD_TO_CART: {
+    case ADD_TO_CART: {
       console.log('вызван экшн ADD_TO_CART');
       const itemId = action.payload.id;
       const itemSize = action.payload.size;
@@ -24,7 +34,7 @@ export default function cartReducer(state = initialState, action) {
         },
       };
     }
-    case actions.REMOVE_FROM_CART: {
+    case REMOVE_FROM_CART: {
       console.log('вызван action REMOVE_FROM_CART');
       const itemId = action.payload.id;
       const itemSize = action.payload.size;
@@ -44,7 +54,7 @@ export default function cartReducer(state = initialState, action) {
         [itemId]: { ...state[itemId], [itemSize]: currentAmount - 1 },
       };
     }
-    case actions.DELETE_FROM_CART: {
+    case DELETE_FROM_CART: {
       console.log('вызван action DELETE_FROM_CART');
       const itemId = action.payload.id;
       const itemSize = action.payload.size;
@@ -57,7 +67,7 @@ export default function cartReducer(state = initialState, action) {
       }
       return { ...state, [itemId]: newAddedSizes };
     }
-    case actions.CLEAR_CART:
+    case CLEAR_CART:
       console.log('вызван action CLEAR_CART');
       return initialState;
     default:
