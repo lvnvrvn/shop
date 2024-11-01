@@ -1,3 +1,14 @@
+
+   export interface IGood {
+      id: number, 
+      title: string,
+      price: number,
+      inStockSizes: {
+        [size: string] : number
+      }, 
+      imgUrl: string
+    }
+  
 export const goods = [
     {
         id: 0,

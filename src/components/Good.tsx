@@ -11,8 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import PlusMinusBtnGroup from "./PlusMinusBtnGroup";
 import { RootState } from "../reducers";
+import { IGood } from '../goods';
 
-export default function Good({ good }) {
+interface GoodProps {
+  good: IGood
+}
+
+export default function Good({ good }: GoodProps) {
   const { id, title, price, inStockSizes, imgUrl } = good;
   const sizes = Object.keys(inStockSizes);
   const [chosenSize, setChosenSize] = useState(sizes[0]);
